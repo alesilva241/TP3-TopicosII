@@ -6,8 +6,15 @@
 package UI;
 
 import ConecteMongoDB.MongoConnection;
+import OOClasses.Hero;
 import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.Mongo;
+import com.mongodb.QueryBuilder;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -156,9 +163,25 @@ public class Main extends javax.swing.JFrame {
         results.setVisible(true);
         results.setLocationRelativeTo(null);
         
-        DB db = MongoConnection.getInstance().getDB();
+        DBCollection db = MongoConnection.getInstance().getDB().getCollection("heroesdata");
         
-        System.out.println(db.getCollection("heroesdata.find()"));
+        DBObject query = QueryBuilder
+                .start("SuggestedRoleLevels")
+                .is("Carry")
+                .get();
+        
+        ArrayList<Hero> heroes = new ArrayList<>();
+        DBCursor cursor = db.find(query);
+        
+        while(cursor.hasNext()){
+        
+            heroes.add((Hero) cursor.next());
+            
+        }
+        
+        for (Iterator<Hero> it = heroes.iterator(); it.hasNext();) {
+            System.out.println(it.toString());
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
