@@ -14,7 +14,7 @@ import com.mongodb.Mongo;
 public class MongoConnection {
     private static final String HOST = "localhost";
     private static final int PORT = 27017;
-    private static final String DB_NAME = "simple-mongodb";
+    private static final String DB_NAME = "dota2";
 
     private static MongoConnection uniqInstance;
     private static int mongoInstance = 1;
@@ -39,7 +39,7 @@ public class MongoConnection {
         if (mongo == null) {
             mongo = new Mongo(HOST, PORT);
             db = mongo.getDB(DB_NAME);
-            System.out.println("Mongo instance equals :> " + mongoInstance++);
+            //System.out.println("Mongo instance equals :> " + mongoInstance++);
         }
         return db;
     }

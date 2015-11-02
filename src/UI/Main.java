@@ -5,6 +5,9 @@
  */
 package UI;
 
+import ConecteMongoDB.MongoConnection;
+import com.mongodb.DB;
+import com.mongodb.Mongo;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -153,10 +156,10 @@ public class Main extends javax.swing.JFrame {
         results.setVisible(true);
         results.setLocationRelativeTo(null);
         
+        DB db = MongoConnection.getInstance().getDB();
         
-        JOptionPane.showMessageDialog(null, "Total de possíveis resultados: "+palavraBuscada);
+        System.out.println(db.getCollection("heroesdata.find()"));
         
-       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
