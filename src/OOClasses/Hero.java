@@ -148,23 +148,4 @@ public class Hero implements Serializable{
     public void setEscape(int escape) {
         this.escape = escape;
     }
-@Override
-    public String toString() {
-        return "Hero{" +
-                "id='" + ID+ ''' +
-                ", name='" + name+ ''' +
-                ", lore='" + lore + ''' +
-                ", side='" + side + ''' +
-                ", url='" + url + ''' +
-                ", carry='" + carry + ''' +
-                ", disabler='" + disabler + ''' +
-                ", lane_support='" + lane_support + ''' +
-                ", jungler='" + jungler + ''' +
-                ", support='" + support + ''' +
-                ", durable='" + durable + ''' +
-                ", nuker='" + nuker + ''' +
-                ", nuker='" + pusher + ''' +
-                ", escape=" + escape +
-            '}';
-    }
 }
