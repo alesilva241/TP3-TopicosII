@@ -27,8 +27,20 @@ public class Consultas {
     public ArrayList<Hero> buscaHero(String hero) {
         ArrayList<Hero> resultados = new ArrayList<>();
         
+        DBCollection colecao = MongoConnection.getInstance().getDB().getCollection("heroesdata");
+        BasicDBObject query = new BasicDBObject("Title", hero);
+        DBCursor cursor;
 
+        cursor = colecao.find(query);
        
+        try {
+            while (cursor.hasNext()) {
+                System.out.println(cursor.next());
+            }
+        } finally {
+            cursor.close();
+        }
+        
         return resultados;
     }
     
