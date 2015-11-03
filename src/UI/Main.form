@@ -93,13 +93,13 @@
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="herochecked" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sidechecked" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="functionchecked" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="skillchecked" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="keywordSearch" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
@@ -123,10 +123,10 @@
                   <Component id="keywordSearch" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="herochecked" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sidechecked" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="functionchecked" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="skillchecked" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -164,22 +164,22 @@
             <Property name="text" type="java.lang.String" value="Dota2Goo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+        <Component class="javax.swing.JCheckBox" name="herochecked">
           <Properties>
             <Property name="text" type="java.lang.String" value="Hero"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+        <Component class="javax.swing.JCheckBox" name="sidechecked">
           <Properties>
             <Property name="text" type="java.lang.String" value="Side"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+        <Component class="javax.swing.JCheckBox" name="functionchecked">
           <Properties>
             <Property name="text" type="java.lang.String" value="Function"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+        <Component class="javax.swing.JCheckBox" name="skillchecked">
           <Properties>
             <Property name="text" type="java.lang.String" value="Skill"/>
           </Properties>

@@ -5,17 +5,15 @@
  */
 package UI;
 
+import ConecteMongoDB.Consultas;
 import ConecteMongoDB.MongoConnection;
 import OOClasses.Hero;
-import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import com.mongodb.Mongo;
 import com.mongodb.QueryBuilder;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,10 +43,10 @@ public class Main extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         keywordSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        herochecked = new javax.swing.JCheckBox();
+        sidechecked = new javax.swing.JCheckBox();
+        functionchecked = new javax.swing.JCheckBox();
+        skillchecked = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -71,13 +69,13 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1.setText("Dota2Goo");
 
-        jCheckBox1.setText("Hero");
+        herochecked.setText("Hero");
 
-        jCheckBox2.setText("Side");
+        sidechecked.setText("Side");
 
-        jCheckBox3.setText("Function");
+        functionchecked.setText("Function");
 
-        jCheckBox4.setText("Skill");
+        skillchecked.setText("Skill");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,13 +90,13 @@ public class Main extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
+                                .addComponent(herochecked)
                                 .addGap(42, 42, 42)
-                                .addComponent(jCheckBox2)
+                                .addComponent(sidechecked)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCheckBox3)
+                                .addComponent(functionchecked)
                                 .addGap(40, 40, 40)
-                                .addComponent(jCheckBox4))
+                                .addComponent(skillchecked))
                             .addComponent(keywordSearch)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,10 +113,10 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(keywordSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4))
+                    .addComponent(herochecked)
+                    .addComponent(sidechecked)
+                    .addComponent(functionchecked)
+                    .addComponent(skillchecked))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,33 +180,19 @@ public class Main extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String palavraBuscada = keywordSearch.getText();
+        Consultas searchTerm = new Consultas();
         
-        ListSearch results = new ListSearch();
+        if(herochecked.isSelected())
+            searchTerm.buscaHero(palavraBuscada);
+        if(sidechecked.isSelected())
+            searchTerm.buscaSide(palavraBuscada);
+        if(functionchecked.isSelected())
+            searchTerm.buscaFunction(palavraBuscada);
+        if(skillchecked.isSelected())
+            searchTerm.buscaSkill(palavraBuscada);
         
-        
-        results.setVisible(true);
-        results.setLocationRelativeTo(null);
-        
-        DBCollection db = MongoConnection.getInstance().getDB().getCollection("heroesdata");
-        
-        DBObject query = QueryBuilder
-                .start("SuggestedRoleLevels")
-                .is("Carry")
-                .get();
-        
-        ArrayList<Hero> heroes = new ArrayList<>();
-        DBCursor cursor = db.find(query);
-        
-        while(cursor.hasNext()){
-        
-            heroes.add((Hero) cursor.next());
+        searchTerm.buscaGeral(palavraBuscada);
             
-        }
-        
-        for (Iterator<Hero> it = heroes.iterator(); it.hasNext();) {
-            System.out.println(it.toString());
-        }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -254,12 +238,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox functionchecked;
+    private javax.swing.JCheckBox herochecked;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -269,5 +251,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField keywordSearch;
+    private javax.swing.JCheckBox sidechecked;
+    private javax.swing.JCheckBox skillchecked;
     // End of variables declaration//GEN-END:variables
 }
