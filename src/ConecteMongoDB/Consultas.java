@@ -10,6 +10,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import java.util.ArrayList;
+import org.bson.Document;
 
 /**
  *
@@ -35,10 +36,10 @@ public class Consultas {
         ArrayList<Hero> resultados = new ArrayList<>();
         DBCollection colecao = MongoConnection.getInstance().getDB().getCollection("heroesdata");
         BasicDBObject query = new BasicDBObject("Side", side);
-        DBCursor cursor = colecao.find();
-
-        cursor = colecao.find(query);
-
+        DBCursor cursor;
+                
+        cursor = colecao.find(query).sort(new BasicDBObject("Initial"+"."+"Strength", -1));
+        
         try {
             while (cursor.hasNext()) {
                 System.out.println(cursor.next());
@@ -53,7 +54,22 @@ public class Consultas {
     
     public ArrayList<Hero> buscaFunction(String function){
         ArrayList<Hero> resultados = new ArrayList<>();
+        DBCollection colecao = MongoConnection.getInstance().getDB().getCollection("heroesdata");
         
+        DBCursor cursor;
+        
+        BasicDBObject query = new BasicDBObject("SuggestedRoleLevels"+"."+function, new BasicDBObject("$gt", 1));
+        
+        cursor = colecao.find(query).sort(new BasicDBObject("SuggestedRoleLevels"+"."+function, -1));
+        
+        try {
+            while (cursor.hasNext()) {
+                System.out.println(cursor.next());
+            }
+        } finally {
+            cursor.close();
+        }
+        System.out.println(colecao.count(query));
         
         return resultados;
     }
