@@ -13,7 +13,6 @@ import java.io.Serializable;
  */
 public class Hero implements Serializable{
     
-    private int ID;
     private String name;
     private String lore;
     private String side;
@@ -28,14 +27,6 @@ public class Hero implements Serializable{
     private int nuker;
     private int pusher;
     private int escape;
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getName() {
         return name;
@@ -147,5 +138,12 @@ public class Hero implements Serializable{
 
     public void setEscape(int escape) {
         this.escape = escape;
+    }
+    
+    public Hero(String name, String lore, String side, String url){
+        this.name=name;
+        this.lore=lore;
+        this.side=side;
+        this.url=url;
     }
 }

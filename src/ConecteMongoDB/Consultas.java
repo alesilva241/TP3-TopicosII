@@ -6,9 +6,11 @@
 package ConecteMongoDB;
 
 import OOClasses.Hero;
+import UI.ListSearch;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import java.util.ArrayList;
 import org.bson.Document;
 
@@ -17,6 +19,8 @@ import org.bson.Document;
  * @author alexandra
  */
 public class Consultas {
+    
+    ListSearch colocarList = new ListSearch();
     
     public ArrayList<Hero> buscaGeral(String termo){
         ArrayList<Hero> resultados = new ArrayList<>();
@@ -33,6 +37,9 @@ public class Consultas {
 
         cursor = colecao.find(query);
        
+        colocarList.setVisible(true);
+        colocarList.setLocationRelativeTo(null);
+        
         try {
             while (cursor.hasNext()) {
                 System.out.println(cursor.next());
@@ -54,12 +61,19 @@ public class Consultas {
         
         try {
             while (cursor.hasNext()) {
-                System.out.println(cursor.next());
+                DBObject obj = cursor.next();
+                String nome = (String)obj.get("Title");
+                String lore = (String)obj.get("Lore");
+                String sider = (String)obj.get("Side");
+                String url = (String)obj.get("Url");
+                Hero novoHero = new Hero(nome, lore, sider, url);
+                resultados.add(novoHero);
             }
         } finally {
             cursor.close();
         }
         System.out.println(colecao.count(query));
+        //System.out.println(resultados.size());
         
         return resultados;
     }
@@ -88,6 +102,23 @@ public class Consultas {
     
     public ArrayList<Hero> buscaSkill(String skill){
         ArrayList<Hero> resultados = new ArrayList<>();
+        
+        DBCollection colecao = MongoConnection.getInstance().getDB().getCollection("heroesdata");
+        
+        DBCursor cursor;
+        
+        BasicDBObject query = new BasicDBObject("Abilities"+"."+skill, new BasicDBObject("$gt", 1));
+        
+        cursor = colecao.find(query).sort(new BasicDBObject("Abilities"+"."+"Title", -1));
+        
+        try {
+            while (cursor.hasNext()) {
+                System.out.println(cursor.next());
+            }
+        } finally {
+            cursor.close();
+        }
+        System.out.println(colecao.count(query));
         
         
         return resultados;

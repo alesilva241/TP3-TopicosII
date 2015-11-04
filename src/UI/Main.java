@@ -182,16 +182,20 @@ public class Main extends javax.swing.JFrame {
         String palavraBuscada = keywordSearch.getText();
         Consultas searchTerm = new Consultas();
         
-        if(herochecked.isSelected())
-            searchTerm.buscaHero(palavraBuscada);
-        if(sidechecked.isSelected())
-            searchTerm.buscaSide(palavraBuscada);
-        if(functionchecked.isSelected())
-            searchTerm.buscaFunction(palavraBuscada);
-        if(skillchecked.isSelected())
-            searchTerm.buscaSkill(palavraBuscada);
+        ArrayList<Hero> mostrar = new ArrayList<>();
         
-        searchTerm.buscaGeral(palavraBuscada);
+        if(herochecked.isSelected())
+            mostrar = searchTerm.buscaHero(palavraBuscada);
+        else if(sidechecked.isSelected())
+            mostrar = searchTerm.buscaSide(palavraBuscada);
+        else if(functionchecked.isSelected())
+            mostrar = searchTerm.buscaFunction(palavraBuscada);
+        else if(skillchecked.isSelected())
+            mostrar = searchTerm.buscaSkill(palavraBuscada);
+        else{
+            mostrar = searchTerm.buscaGeral(palavraBuscada);
+        }
+        System.out.println(mostrar.size());        
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
