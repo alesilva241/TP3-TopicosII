@@ -144,6 +144,6 @@ public class Hero implements Serializable{
         this.name=name;
         this.lore=lore;
         this.side=side;
-        this.url=url;
+        this.url="http://dota2.gamepedia.com/"+url;
     }
 }

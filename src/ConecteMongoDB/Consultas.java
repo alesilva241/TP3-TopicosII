@@ -20,8 +20,6 @@ import org.bson.Document;
  */
 public class Consultas {
     
-    ListSearch colocarList = new ListSearch();
-    
     public ArrayList<Hero> buscaGeral(String termo){
         ArrayList<Hero> resultados = new ArrayList<>();
                
@@ -36,13 +34,15 @@ public class Consultas {
         DBCursor cursor;
 
         cursor = colecao.find(query);
-       
-        colocarList.setVisible(true);
-        colocarList.setLocationRelativeTo(null);
-        
         try {
             while (cursor.hasNext()) {
-                System.out.println(cursor.next());
+                DBObject obj = cursor.next();
+                String nome = (String)obj.get("Title");
+                String lore = (String)obj.get("Lore");
+                String sider = (String)obj.get("Side");
+                String url = (String)obj.get("Url");
+                Hero novoHero = new Hero(nome, lore, sider, url);
+                resultados.add(novoHero);
             }
         } finally {
             cursor.close();
@@ -72,7 +72,7 @@ public class Consultas {
         } finally {
             cursor.close();
         }
-        System.out.println(colecao.count(query));
+        //System.out.println(colecao.count(query));
         //System.out.println(resultados.size());
         
         return resultados;
@@ -90,13 +90,17 @@ public class Consultas {
         
         try {
             while (cursor.hasNext()) {
-                System.out.println(cursor.next());
+                DBObject obj = cursor.next();
+                String nome = (String)obj.get("Title");
+                String lore = (String)obj.get("Lore");
+                String sider = (String)obj.get("Side");
+                String url = (String)obj.get("Url");
+                Hero novoHero = new Hero(nome, lore, sider, url);
+                resultados.add(novoHero);
             }
         } finally {
             cursor.close();
         }
-        System.out.println(colecao.count(query));
-        
         return resultados;
     }
     
@@ -113,12 +117,17 @@ public class Consultas {
         
         try {
             while (cursor.hasNext()) {
-                System.out.println(cursor.next());
+                DBObject obj = cursor.next();
+                String nome = (String)obj.get("Title");
+                String lore = (String)obj.get("Lore");
+                String sider = (String)obj.get("Side");
+                String url = (String)obj.get("Url");
+                Hero novoHero = new Hero(nome, lore, sider, url);
+                resultados.add(novoHero);
             }
         } finally {
             cursor.close();
         }
-        System.out.println(colecao.count(query));
         
         
         return resultados;

@@ -195,8 +195,18 @@ public class Main extends javax.swing.JFrame {
         else{
             mostrar = searchTerm.buscaGeral(palavraBuscada);
         }
-        System.out.println(mostrar.size());        
-            
+      
+        if (mostrar.isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Checked your search before continue!");
+        } else {
+            ListSearch newTable = new ListSearch();
+
+            newTable.puttingdatatable(mostrar);
+            newTable.pack();
+            newTable.setVisible(true);
+            newTable.setLocationRelativeTo(null);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
